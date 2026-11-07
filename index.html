@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin Levrone · Fitness Workspace</title>
+<style>
+  :root { --bg: #0f172a; --card: #1e293b; --accent: #38bdf8; --text: #e2e8f0; --muted: #94a3b8; --green: #4ade80; --red: #f87171; --border: #334155; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+  .container { max-width: 880px; margin: 0 auto; padding: 40px 20px; position: relative; }
+  h1 { font-size: 2.2rem; background: linear-gradient(135deg, var(--accent), #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+  .subtitle { color: var(--muted); font-size: 1.1rem; margin-bottom: 40px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 24px; }
+  .card h2 { font-size: 1.25rem; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+  th { color: var(--muted); font-weight: 600; }
+  .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+  .tag-must { background: rgba(248,113,113,0.2); color: var(--red); }
+  .tag-should { background: rgba(250,204,21,0.2); color: #facc15; }
+  .tag-may { background: rgba(148,163,184,0.2); color: var(--muted); }
+  .step { display: flex; align-items: flex-start; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .step-num { background: var(--accent); color: var(--bg); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+  .step:last-child { border: none; }
+  .highlight { background: rgba(56,189,248,0.1); border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+  .footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .language-switch { position: absolute; top: 8px; right: 20px; display: flex; gap: 3px; padding: 3px; border: 1px solid var(--border); border-radius: 20px; background: var(--card); }
+  .language-switch button { border: 0; border-radius: 16px; padding: 3px 9px; background: transparent; color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; }
+  .language-switch button[aria-pressed="true"] { background: var(--accent); color: var(--bg); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="language-switch" role="group" aria-label="Chọn ngôn ngữ">
+  <button type="button" data-lang="vi" aria-pressed="true">VI</button>
+  <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+</div>
+
+<h1 data-i18n="title">💪 Kevin Levrone</h1>
+<p class="subtitle" data-i18n="subtitle">Bản mô tả vai trò Agent thể hình song ngữ: thiết kế bài tập, giải thích cơ thể cơ bản và truyền cảm hứng cho người mới tập.</p>
+
+<!-- Tóm tắt một câu -->
+<div class="highlight">
+  <strong data-i18n="summaryLabel">📌 Định nghĩa công việc:</strong> <span data-i18n="summaryText">Khi nhận mục tiêu, trình độ, dụng cụ và thời gian tập, Agent soạn buổi tập cùng phần giải thích cơ thể dễ hiểu, rồi bàn giao thành nội dung có thể rà soát trước khi chia sẻ.</span>
+</div>
+
+<!-- Đây là gì -->
+<div class="card">
+  <h2 data-i18n="whatTitle">💡 Thẻ công việc Agent này là gì?</h2>
+  <p><span data-i18n="what1a">Đây là bản mô tả vị trí cho Agent nội dung thể hình, kết hợp</span> <strong data-i18n="toolsInline">bài tập + kiến thức cơ thể</strong><span data-i18n="what1b"> cho người mới tập và người muốn cải thiện thể lực tổng quát. Thẻ này nêu rõ Agent phục vụ ai, nhận đầu vào gì, xử lý ra sao và bàn giao kết quả nào.</span></p>
+  <br>
+  <p data-i18n="what2">Mục tiêu là giúp người mới hiểu cơ thể và tập đều hơn. Đây hiện là trang giới thiệu mẫu; trang chưa kết nối Hermes/Lark và chưa tự tạo hay đăng nội dung.</p>
+</div>
+
+<!-- Tiết kiệm thời gian -->
+<div class="card">
+  <h2 data-i18n="savingsTitle">📚 Nội dung tôi muốn tạo cho người xem</h2>
+  <table>
+    <tr><th data-i18n="contentType">Loại nội dung</th><th data-i18n="whatIProvide">Tôi đưa vào</th><th data-i18n="viewerGets">Người xem nhận được</th></tr>
+    <tr><td data-i18n="save1">Bài tập thể hình</td><td data-i18n="save1b">Mục tiêu, trình độ, thời lượng, dụng cụ</td><td data-i18n="save1c">Bài tập, số hiệp/lần và nghỉ</td></tr>
+    <tr><td data-i18n="save2">Lý thuyết cơ thể</td><td data-i18n="save2b">Nhóm cơ hoặc chuyển động cần giải thích</td><td data-i18n="save2c">Kiến thức ngắn, dễ hiểu và đúng trọng tâm</td></tr>
+    <tr><td data-i18n="save3">Mẹo kỹ thuật</td><td data-i18n="save3b">Tên bài tập và điểm cần chú ý</td><td data-i18n="save3c">Cue thực hiện và lỗi thường gặp</td></tr>
+    <tr><td data-i18n="save4">Nội dung truyền cảm hứng</td><td data-i18n="save4b">Thông điệp và phong cách mong muốn</td><td data-i18n="save4c">Kịch bản ngắn, chân thật, không phóng đại</td></tr>
+    <tr><td><strong data-i18n="total">Tiêu chuẩn hoàn thành</strong></td><td colspan="2"><strong data-i18n="review">Đúng yêu cầu đầu vào; hướng dẫn rõ và phù hợp người mới; kiến thức có căn cứ; nêu giới hạn an toàn; không tự bịa hoặc hứa kết quả.</strong></td></tr>
+  </table>
+</div>
+
+<!-- Công cụ -->
+<div class="card">
+  <h2 data-i18n="toolsTitle">🛠️ Các nhóm nhiệm vụ dự kiến</h2>
+  <div class="grid2">
+    <div style="padding:12px; background:rgba(56,189,248,0.05); border-radius:8px;">
+      <strong data-i18n="tool1title">Workout Builder</strong><br><span style="color:var(--muted);font-size:0.9rem;" data-i18n="tool1">Tạo buổi tập theo mục tiêu, trình độ, thời gian và dụng cụ.</span>
+    </div>
+    <div style="padding:12px; background:rgba(129,140,248,0.05); border-radius:8px;">
+      <strong data-i18n="tool2title">Body Basics</strong><br><span style="color:var(--muted);font-size:0.9rem;" data-i18n="tool2">Giải thích nhóm cơ, khớp, mẫu chuyển động và hồi phục bằng ngôn ngữ thường ngày.</span>
+    </div>
+    <div style="padding:12px; background:rgba(74,222,128,0.05); border-radius:8px;">
+      <strong data-i18n="tool3title">Technique & Safety</strong><br><span style="color:var(--muted);font-size:0.9rem;" data-i18n="tool3">Thêm mẹo kỹ thuật, lỗi thường gặp và giới hạn an toàn cho nội dung.</span>
+    </div>
+    <div style="padding:12px; background:rgba(250,204,33,0.05); border-radius:8px;">
+      <strong data-i18n="tool4title">Creator Studio</strong><br><span style="color:var(--muted);font-size:0.9rem;" data-i18n="tool4">Chuyển giáo án và kiến thức thành bài đăng, kịch bản video và lời nhắc tích cực.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Đầu vào -->
+<div class="card">
+  <h2 data-i18n="inputsTitle">📥 Thông tin đầu vào</h2>
+  <table>
+    <tr><th data-i18n="source">Thông tin người dùng</th><th data-i18n="type">Dùng để</th><th data-i18n="format">Ví dụ</th></tr>
+    <tr><td data-i18n="input1">Mục tiêu tập luyện</td><td data-i18n="input1b">Chọn trọng tâm bài tập và cách giải thích</td><td data-i18n="input1c">Sức mạnh, cơ bắp, thể lực</td></tr>
+    <tr><td data-i18n="input2">Trình độ, dụng cụ, thời gian</td><td data-i18n="input2b">Điều chỉnh lựa chọn bài tập ở mức khái quát</td><td data-i18n="input2c">Người mới, tạ đơn, 30 phút</td></tr>
+    <tr><td data-i18n="input3">Chủ đề cơ thể</td><td data-i18n="input3b">Chọn nhóm cơ, khớp hoặc mẫu vận động để giải thích</td><td data-i18n="input3c">Đẩy, kéo, squat, hinge</td></tr>
+    <tr><td data-i18n="input4">Người xem và định dạng</td><td data-i18n="input4b">Viết nội dung đúng mức và đúng kênh</td><td data-i18n="input4c">Bài ngắn, video, giọng gần gũi</td></tr>
+    <tr><td data-i18n="input5">Giới hạn thể chất được chia sẻ</td><td data-i18n="input5b">Nhận biết khi cần dừng và chuyển người có chuyên môn</td><td data-i18n="input5c">Đau hiện tại, chấn thương hoặc lưu ý sức khỏe</td></tr>
+  </table>
+</div>
+
+<!-- Các bước xử lý -->
+<div class="card">
+  <h2 data-i18n="actionsTitle">⚙️ Quy trình làm việc của Agent</h2>
+  <div class="step"><div class="step-num">1</div><div><span class="tag tag-must" data-i18n="must">CẦN</span><span data-i18n="step1">Xác nhận mục tiêu, trình độ, dụng cụ và thời lượng; nếu thiếu thông tin quan trọng, hỏi từng câu thay vì tự đoán.</span></div></div>
+  <div class="step"><div class="step-num">2</div><div><span class="tag tag-must" data-i18n="must">CẦN</span><span data-i18n="step2">Kiểm tra giới hạn thể chất được chia sẻ; nếu có đau, chấn thương hoặc vấn đề y tế, dừng việc kê bài và chuyển chuyên gia.</span></div></div>
+  <div class="step"><div class="step-num">3</div><div><span class="tag tag-must" data-i18n="must">CẦN</span><span data-i18n="step3">Chọn nhóm cơ và mẫu vận động phù hợp mục tiêu, trình độ và dụng cụ.</span></div></div>
+  <div class="step"><div class="step-num">4</div><div><span class="tag tag-should" data-i18n="should">NÊN</span><span data-i18n="step4">Sắp xếp bài tập, hiệp/lần, nghỉ và tiến trình vừa sức; giải thích cơ tham gia và chuyển động chính.</span></div></div>
+  <div class="step"><div class="step-num">5</div><div><span class="tag tag-must" data-i18n="must">CẦN</span><span data-i18n="step5">Thêm cue kỹ thuật, lỗi thường gặp và biến thể dễ hơn; không khẳng định đã kiểm tra form người tập.</span></div></div>
+  <div class="step"><div class="step-num">6</div><div><span class="tag tag-must" data-i18n="must">CẦN</span><span data-i18n="step6">Đối chiếu kiến thức cơ thể với nguồn đáng tin; ghi nguồn và nói rõ phần chưa chắc chắn.</span></div></div>
+  <div class="step"><div class="step-num">7</div><div><span class="tag tag-must" data-i18n="must">CẦN</span><span data-i18n="step7">Tự kiểm tra đầu ra: đúng yêu cầu, dễ hiểu, phù hợp người mới, an toàn và không hứa kết quả.</span></div></div>
+  <div class="step"><div class="step-num">8</div><div><span class="tag tag-must" data-i18n="must">CẦN</span><span data-i18n="step8">Bàn giao bản nháp để người tạo nội dung rà soát; chỉ chia sẻ sau khi con người duyệt.</span></div></div>
+</div>
+
+<!-- Đầu ra -->
+<div class="card">
+  <h2 data-i18n="outputsTitle">📤 Đầu ra dự kiến</h2>
+  <p><strong data-i18n="larkDoc">Mỗi nội dung thể hình</strong><span data-i18n="outputsLead"> có thể gồm bốn phần:</span></p>
+  <div class="grid2" style="margin-top:12px;">
+    <div>🏋️ <strong data-i18n="output1">Buổi tập</strong><br><span style="color:var(--muted);font-size:0.9rem;" data-i18n="output1b">Bài tập, hiệp/lần, nghỉ và biến thể.</span></div>
+    <div>🧠 <strong data-i18n="output2">Lý thuyết cơ thể</strong><br><span style="color:var(--muted);font-size:0.9rem;" data-i18n="output2b">Giải thích nhóm cơ và chuyển động chính.</span></div>
+    <div>🎥 <strong data-i18n="output3">Kịch bản hoặc bài đăng</strong><br><span style="color:var(--muted);font-size:0.9rem;" data-i18n="output3b">Cách nói cuốn hút nhưng không hứa hẹn quá mức.</span></div>
+    <div>🔎 <strong data-i18n="output4">Nguồn tham khảo</strong><br><span style="color:var(--muted);font-size:0.9rem;" data-i18n="output4b">Nguồn kiến thức để người xem đọc thêm.</span></div>
+  </div>
+</div>
+
+<!-- Giới hạn khả năng -->
+<div class="card">
+  <h2 data-i18n="limitsTitle">✅ Có thể hỗ trợ / ❌ Ranh giới và dự phòng thủ công</h2>
+  <table>
+    <tr><th style="color:var(--green);" data-i18n="can">✅ Có thể hỗ trợ</th><th style="color:var(--red);" data-i18n="cannot">❌ Giới hạn</th></tr>
+    <tr><td data-i18n="can1">Soạn giáo án khái quát theo mục tiêu, trình độ và dụng cụ người xem nêu.</td><td data-i18n="cannot1">Không chẩn đoán đau, chấn thương hoặc bệnh lý.</td></tr>
+    <tr><td data-i18n="can2">Giải thích cơ, khớp và mẫu vận động ở mức cơ bản.</td><td data-i18n="cannot2">Không thay bác sĩ, chuyên gia phục hồi chức năng hay huấn luyện viên trực tiếp.</td></tr>
+    <tr><td data-i18n="can3">Đưa mẹo kỹ thuật và lựa chọn biến thể dễ hơn.</td><td data-i18n="cannot3">Không thể xác nhận form chính xác chỉ từ mô tả văn bản.</td></tr>
+    <tr><td data-i18n="can4">Viết nội dung truyền cảm hứng dựa trên tiến bộ thực tế.</td><td data-i18n="cannot4">Không bảo đảm kết quả hình thể hay tốc độ tăng cơ.</td></tr>
+    <tr><td data-i18n="can5">Tóm tắt kiến thức và đính kèm nguồn để đọc thêm.</td><td data-i18n="cannot5">Không kê bài tập phục hồi riêng cho chấn thương hoặc tình trạng y tế.</td></tr>
+    <tr><td data-i18n="can6">Soạn bản nháp có cấu trúc để người tạo nội dung rà duyệt.</td><td data-i18n="cannot6">Không tự đăng nội dung hoặc tuyên bố đã chạy/kết nối khi chưa có tích hợp thật.</td></tr>
+  </table>
+  <div class="grid2" style="margin-top:16px;">
+    <div><strong style="color:var(--red);" data-i18n="fallbackTitle">⛑️ Khi nào phải dừng và chuyển chuyên gia</strong><br><span style="color:var(--muted);font-size:0.9rem;" data-i18n="fallbackText">Có đau, chấn thương, bệnh lý, triệu chứng nặng lên hoặc yêu cầu phục hồi riêng: không kê bài; khuyên hỏi bác sĩ/chuyên gia phù hợp.</span></div>
+    <div><strong style="color:var(--green);" data-i18n="reviewTitle">👀 Điểm con người cần rà soát</strong><br><span style="color:var(--muted);font-size:0.9rem;" data-i18n="reviewText">Kiểm tra tính phù hợp, nguồn tham khảo, cách diễn đạt và mọi tuyên bố trước khi đăng hoặc gửi cho người tập.</span></div>
+  </div>
+</div>
+
+<!-- Cách kích hoạt -->
+<div class="card">
+  <h2 data-i18n="triggerTitle">🚀 Cách sử dụng</h2>
+  <p><span data-i18n="trigger1">Cho workspace biết</span> <strong data-i18n="botName">mục tiêu, trình độ, dụng cụ và thời lượng</strong> <span data-i18n="trigger2">rồi yêu cầu nội dung cụ thể, ví dụ:</span></p>
+  <div class="highlight">
+    <code data-i18n="examplePrompt">Tạo buổi tập ngực cho người mới, có tạ đơn, 30 phút. Giải thích cơ tham gia, mẹo kỹ thuật và một lời khích lệ ngắn.</code>
+  </div>
+  <p style="margin-top:12px; color:var(--muted);" data-i18n="schedule">Đây là ví dụ yêu cầu dành cho Agent sau khi được cấu hình; trang công khai hiện chỉ giới thiệu vai trò, chưa nhận yêu cầu hay kết nối công cụ.</p>
+</div>
+
+<!-- Lưu ý -->
+<div class="card">
+  <h2 data-i18n="notesTitle">⚠️ Nguyên tắc nội dung</h2>
+  <ul style="padding-left:20px; color:var(--muted);">
+    <li data-i18n="note1">Nội dung là giáo dục thể chất phổ thông, không phải tư vấn y tế cá nhân.</li>
+    <li data-i18n="note2">Hướng dẫn chung cho người lớn là tập tăng cường các nhóm cơ chính ít nhất 2 ngày/tuần; lịch tập cần điều chỉnh theo từng người.</li>
+    <li><span data-i18n="note3">Nguồn tham khảo:</span> <a href="https://acsm.org/resistance-training-guidelines-update-2026/" target="_blank" rel="noopener noreferrer">ACSM 2026</a> · <a href="https://www.cdc.gov/physical-activity-basics/guidelines/adults.html" target="_blank" rel="noopener noreferrer">CDC</a></li>
+    <li data-i18n="note4">Tên Kevin Levrone là tên workspace; trang độc lập, không phải kênh chính thức hay nội dung được ông ấy xác nhận.</li>
+  </ul>
+</div>
+
+<div class="footer">
+  <p data-i18n="footer1">Kevin Levrone · Fitness Workspace · Việt / 简体中文</p>
+  <p data-i18n="footer2">Bản mô tả workspace mẫu · chức năng tạo giáo án cần được kết nối riêng</p>
+</div>
+
+</div>
+<script>
+const zh = {
+  title: "💪 Kevin Levrone",
+  subtitle: "一个越南语与简体中文双语的健身内容工作空间：设计训练、解释基础身体知识，并鼓励人们安全地坚持运动。",
+  summaryLabel: "📌 目标：",
+  summaryText: "根据训练目标、时间和器材设计健身训练，并解释目标肌群、动作要点和实用鼓励，让观众明白自己正在练什么。",
+  whatTitle: "💡 这个工作空间会创作什么？",
+  what1a: "这是我想建立的健身内容工作空间，把",
+  toolsInline: "训练计划 + 身体知识",
+  what1b: "放在同一份内容中。观众可以获得有明确目标的训练、关于肌肉和动作的通俗解释，以及开始练习时可用的技术提示。",
+  what2: "目标是帮助初学者理解身体并更规律地训练，不承诺快速改变，也不替代受伤或健康问题所需的专业指导。",
+  savingsTitle: "📚 我想为观众创作的内容",
+  contentType: "内容类型", whatIProvide: "我提供的信息", viewerGets: "观众获得的内容",
+  save1: "健身训练", save1b: "目标、水平、时长和器材", save1c: "动作、组数/次数和休息",
+  save2: "身体基础知识", save2b: "需要解释的肌群或动作", save2c: "简明、易懂并切中主题的知识",
+  save3: "动作技巧", save3b: "动作名称和注意事项", save3c: "动作提示和常见错误",
+  save4: "激励内容", save4b: "主题和希望采用的表达风格", save4c: "真诚、不夸大的短文或脚本",
+  total: "总体目标", review: "帮助观众理解训练、循序进步并坚持习惯。",
+  toolsTitle: "🛠️ 工作空间的主要部分",
+  tool1title: "训练计划生成器", tool1: "根据目标、水平、时间和器材设计训练。",
+  tool2title: "身体基础知识", tool2: "用日常语言解释肌群、关节、动作模式和恢复。",
+  tool3title: "动作技巧与安全", tool3: "补充技术提示、常见错误和安全边界。",
+  tool4title: "内容创作工具", tool4: "把训练和知识改写成帖子、视频脚本和积极提示。",
+  inputsTitle: "📥 输入信息", source: "用户信息", type: "用途", format: "示例",
+  input1: "训练目标", input1b: "确定训练重点和解释方式", input1c: "力量、增肌、体能", input2: "水平、器材和时间", input2b: "大致调整训练动作的选择", input2c: "初学者、哑铃、30分钟", input3: "身体主题", input3b: "选择要解释的肌群、关节或动作模式", input3c: "推、拉、深蹲、髋关节铰链", input4: "观众和内容格式", input4b: "让表达符合观众水平和发布渠道", input4c: "短文、视频、亲切语气",
+  actionsTitle: "⚙️ 工作空间如何创作内容", must: "需要", should: "建议", may: "可选",
+  step1: "先了解训练目标、水平、器材和时长，再安排训练。",
+  step2: "根据要求选择目标肌群和动作模式。",
+  step3: "安排动作、组数/次数、休息时间和渐进调整方式。",
+  step4: "简要说明哪些肌肉参与以及动作如何完成。",
+  step5: "补充技术提示、常见错误和更简单的动作变式。",
+  step6: "根据可靠来源核对身体知识，并标出不确定之处。",
+  step7: "把训练计划改写成简短清晰、带有真实鼓励的内容。",
+  step8: "提醒观众量力调整、优先保持动作质量，必要时咨询专业人士。",
+  outputsTitle: "📤 预期输出", larkDoc: "每份健身内容",
+  outputsLead: "可以包含四个部分：",
+  output1: "训练安排", output1b: "动作、组数/次数、休息和变式。",
+  output2: "身体基础知识", output2b: "解释参与的肌群和主要动作。",
+  output3: "脚本或帖子", output3b: "有吸引力但不夸大承诺。",
+  output4: "参考来源", output4b: "观众可以继续阅读的资料。",
+  limitsTitle: "✅ 工作空间能帮什么 / ❌ 不能替代什么",
+  can: "✅ 可以协助", cannot: "❌ 能力边界",
+  can1: "根据观众提供的目标、水平和器材拟定通用计划。", cannot1: "不能诊断疼痛、损伤或疾病。",
+  can2: "用基础语言解释肌肉、关节和动作模式。", cannot2: "不能替代医生、康复专家或现场教练。",
+  can3: "提供动作提示和较简单的替代动作。", cannot3: "仅凭文字不能确认实际动作姿势是否正确。",
+  can4: "围绕真实进步写激励内容。", cannot4: "不能保证体型变化或增肌速度。",
+  can5: "总结知识并附上延伸阅读来源。", cannot5: "不能为伤病或医疗情况制定康复训练。",
+  triggerTitle: "🚀 如何使用", trigger1: "告诉工作空间", botName: "训练目标、水平、器材和时长", trigger2: "然后提出具体需求，例如：",
+  examplePrompt: "为初学者设计一节30分钟的哑铃胸部训练。解释参与的肌肉、给出动作提示和一句简短鼓励。",
+  schedule: "可以把输出改成帖子或短视频脚本；分享之前由内容创作者审核。",
+  notesTitle: "⚠️ 内容原则",
+  note1: "内容属于一般健身教育，不是个人医疗建议。",
+  note2: "成人的一般指南建议每周至少2天锻炼主要肌群；具体计划仍需按个人调整。",
+  note3: "参考来源：",
+  note4: "Kevin Levrone 是此工作空间使用的名称；本页面为独立项目，并非其官方频道或经其认可的内容。",
+  footer1: "Kevin Levrone · 健身内容工作空间 · 越南语 / 简体中文",
+  footer2: "工作空间介绍模板 · 自动生成训练计划功能仍需单独接入"
+};
+const original = Object.fromEntries([...document.querySelectorAll("[data-i18n]")].map(el => [el.dataset.i18n, el.textContent]));
+const languageButtons = [...document.querySelectorAll("[data-lang]")];
+function setLanguage(lang) {
+  document.documentElement.lang = lang === "zh" ? "zh-CN" : "vi";
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    el.textContent = lang === "zh" ? (zh[el.dataset.i18n] || original[el.dataset.i18n]) : original[el.dataset.i18n];
+  });
+  languageButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.lang === lang)));
+  document.title = lang === "zh" ? "Kevin Levrone · 健身工作空间" : "Kevin Levrone · Fitness Workspace";
+  document.querySelector(".language-switch").setAttribute("aria-label", lang === "zh" ? "选择语言" : "Chọn ngôn ngữ");
+}
+languageButtons.forEach(button => button.addEventListener("click", () => setLanguage(button.dataset.lang)));
+</script>
+</body>
+</html>
+
